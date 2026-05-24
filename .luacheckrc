@@ -9,8 +9,6 @@ globals = {
     "chalk",
     "reload",
     "_PLUGIN",
-    "MODULE_ANCHOR",
-    "lib",
     }
 read_globals = {
     "imgui",

@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Changed
+
+- Ported module boot, hook registration, fallback UI, and draw widgets to the current ModpackLib host/draw APIs.
+
 ## [1.1.0] - 2026-05-05
 
 ### Changed

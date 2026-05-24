@@ -24,14 +24,14 @@ end
 local hasForcedHammerThisRun = false
 
 function module.registerHooks(host, store)
-    lib.hooks.Wrap("StartNewRun", function(baseFunc, prevRun, args)
+    host.hooks.wrap("StartNewRun", function(baseFunc, prevRun, args)
         if host.isEnabled() then
             hasForcedHammerThisRun = false
         end
         return baseFunc(prevRun, args)
     end)
 
-    lib.hooks.Wrap("SetTraitsOnLoot", function(baseFunc, lootData, args)
+    host.hooks.wrap("SetTraitsOnLoot", function(baseFunc, lootData, args)
         baseFunc(lootData, args)
 
         if not host.isEnabled() then return end
@@ -50,7 +50,7 @@ function module.registerHooks(host, store)
         end
     end)
 
-    lib.hooks.Wrap("AddTraitToHero", function(baseFunc, args)
+    host.hooks.wrap("AddTraitToHero", function(baseFunc, args)
         args = args or {}
         if not host.isEnabled() then return baseFunc(args) end
 
