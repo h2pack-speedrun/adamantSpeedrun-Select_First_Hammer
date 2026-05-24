@@ -49,8 +49,7 @@ local function init()
         rom.gui.add_to_menu_bar(fallbackUi.addMenuBar)
     end)
     logic.registerHooks(host, store)
-    local ok = host.activate()
-    if not ok then
+    if not host.activate() then
         return
     end
 end
