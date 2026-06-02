@@ -23,10 +23,10 @@ local loader = reload.auto_single()
 local function init()
     import_as_fallback(rom.game)
     local data = import("data.lua")
-    local logic = import("logic.lua").bind(data)
-    local ui = import("ui.lua").bind(data, logic)
+    local logic = import("logic.lua")
+    local ui = import("ui.lua")
 
-    local host, store = lib.createModule({
+    local module = lib.createModule({
         pluginGuid = PLUGIN_GUID,
         config = config,
         id = MODULE_ID,
@@ -34,22 +34,27 @@ local function init()
         shortName = "Hammer Selection",
         tooltip = "Select the guaranteed first hammer for each weapon aspect.",
         modpack = PACK_ID,
-        storage = data.buildStorage(),
-        drawTab = ui.drawTab,
-        drawQuickContent = ui.drawQuickContent,
     })
-    if not host then
+    if not module then
         return
     end
 
-    logic.localizeHammerLabels()
+    logic.localizeHammerLabels(data.weaponDrawOrder, data.hammerData)
 
-    host.fallbackUi.attachGuiOnce(function(fallbackUi)
+    module.data.define(data.buildStorage())
+    ui.attach(module, {
+        hammerData = data.hammerData,
+        weaponLabels = data.weaponLabels,
+        weaponDrawOrder = data.weaponDrawOrder,
+        aspectLabels = data.aspectLabels,
+        weaponAspectMapping = data.weaponAspectMapping,
+    }, logic.getEquippedAspect)
+    module.fallbackUi.attachGuiOnce(function(fallbackUi)
         rom.gui.add_imgui(fallbackUi.renderWindow)
         rom.gui.add_to_menu_bar(fallbackUi.addMenuBar)
     end)
-    logic.registerHooks(host, store)
-    if not host.activate() then
+    logic.attach(module, data.hammerData)
+    if not module.activate() then
         return
     end
 end

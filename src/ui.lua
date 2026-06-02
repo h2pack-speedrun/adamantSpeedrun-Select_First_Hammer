@@ -1,20 +1,31 @@
 local module = {}
-local data = nil
-local logic = nil
 
 local LABEL_WIDTH = 180
 local DROPDOWN_WIDTH = 400
 local COLUMN_GAP = 12
 local DROPDOWN_TOOLTIP = "Guaranteed first hammer for this aspect. Leave on None (Random) to keep vanilla behavior."
-local dropdownOptsByAspect = {}
 
-local function DrawAspectDropdown(draw, state, aspectName)
+local function buildDropdownOptions(hammerDataByAspect)
+    local optsByAspect = {}
+    for aspectName, hammerOptions in pairs(hammerDataByAspect or {}) do
+        optsByAspect[aspectName] = {
+            label = "",
+            values = hammerOptions.values,
+            displayValues = hammerOptions.displayValues,
+            controlWidth = DROPDOWN_WIDTH,
+            tooltip = DROPDOWN_TOOLTIP,
+        }
+    end
+    return optsByAspect
+end
+
+local function DrawAspectDropdown(draw, state, catalog, dropdownOptsByAspect, aspectName)
     local imgui = draw.imgui
-    local hammerOptions = data.hammerData[aspectName]
+    local hammerOptions = catalog.hammerData[aspectName]
     if not hammerOptions then
         return
     end
-    local label = data.aspectLabels[aspectName] or aspectName
+    local label = catalog.aspectLabels[aspectName] or aspectName
     local rowStartX = imgui.GetCursorPosX()
 
     imgui.AlignTextToFramePadding()
@@ -25,39 +36,39 @@ local function DrawAspectDropdown(draw, state, aspectName)
 
     imgui.SameLine()
     imgui.SetCursorPosX(rowStartX + LABEL_WIDTH + COLUMN_GAP)
-    draw.widgets.dropdown(state.get(aspectName), dropdownOptsByAspect[aspectName])
+    local field = state.get(aspectName)
+    local currentValue = field:read()
+    if currentValue ~= nil and currentValue ~= ""
+        and hammerOptions.valueIndex and not hammerOptions.valueIndex[currentValue] then
+        field:write("")
+    end
+    draw.widgets.dropdown(field, dropdownOptsByAspect[aspectName])
 end
 
-function module.drawTab(draw, state)
+function module.drawTab(draw, state, catalog, dropdownOptsByAspect)
     local imgui = draw.imgui
-    for _, weaponName in ipairs(data.weaponDrawOrder or {}) do
-        if imgui.CollapsingHeader(data.weaponLabels[weaponName] or weaponName) then
-            for _, aspectName in ipairs(data.weaponAspectMapping[weaponName] or {}) do
-                DrawAspectDropdown(draw, state, aspectName)
+    for _, weaponName in ipairs(catalog.weaponDrawOrder or {}) do
+        if imgui.CollapsingHeader(catalog.weaponLabels[weaponName] or weaponName) then
+            for _, aspectName in ipairs(catalog.weaponAspectMapping[weaponName] or {}) do
+                DrawAspectDropdown(draw, state, catalog, dropdownOptsByAspect, aspectName)
             end
         end
     end
 end
 
-function module.drawQuickContent(draw, state)
-    local currentAspect = logic.getEquippedAspect()
-    DrawAspectDropdown(draw, state, currentAspect)
+function module.drawQuickContent(draw, state, catalog, dropdownOptsByAspect, getEquippedAspect)
+    local currentAspect = getEquippedAspect()
+    DrawAspectDropdown(draw, state, catalog, dropdownOptsByAspect, currentAspect)
 end
 
-function module.bind(moduleData, moduleLogic)
-    data = moduleData
-    logic = moduleLogic
-    dropdownOptsByAspect = {}
-    for aspectName, hammerOptions in pairs(data.hammerData or {}) do
-        dropdownOptsByAspect[aspectName] = {
-            label = "",
-            values = hammerOptions.values,
-            displayValues = hammerOptions.displayValues,
-            controlWidth = DROPDOWN_WIDTH,
-            tooltip = DROPDOWN_TOOLTIP,
-        }
-    end
-    return module
+function module.attach(refModule, catalog, getEquippedAspect)
+    local dropdownOptsByAspect = buildDropdownOptions(catalog.hammerData)
+    refModule.ui.tab(function(_, ui)
+        return module.drawTab(ui.draw, ui.data, catalog, dropdownOptsByAspect)
+    end)
+    refModule.ui.quickContent(function(_, ui)
+        return module.drawQuickContent(ui.draw, ui.data, catalog, dropdownOptsByAspect, getEquippedAspect)
+    end)
 end
 
 return module

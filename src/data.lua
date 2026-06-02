@@ -1,210 +1,88 @@
+-- luacheck: globals ScreenData LootSetData
+
 local data = {}
 
-data.hammerData = {
-    WeaponStaffSwing = {
-        values = {
-            "",
-            "StaffDoubleAttackTrait",
-            "StaffLongAttackTrait",
-            "StaffDashAttackTrait",
-            "StaffTripleShotTrait",
-            "StaffJumpSpecialTrait",
-            "StaffExAoETrait",
-            "StaffAttackRecoveryTrait",
-            "StaffFastSpecialTrait",
-            "StaffExHealTrait",
-            "StaffSecondStageTrait",
-            "StaffPowershotTrait",
-            "StaffOneWayAttackTrait",
-            "StaffRaiseDeadBigTrait",
-            "StaffRaiseDeadDoubleTrait",
-            "StaffLoneShadeRespawnTrait",
-            "StaffLoneShadeRallyTrait",
-        },
-    },
-    WeaponDagger = {
-        values = {
-            "",
-            "DaggerBlinkAoETrait",
-            "DaggerSpecialJumpTrait",
-            "DaggerSpecialLineTrait",
-            "DaggerRapidAttackTrait",
-            "DaggerSpecialConsecutiveTrait",
-            "DaggerBackstabTrait",
-            "DaggerSpecialReturnTrait",
-            "DaggerSpecialFanTrait",
-            "DaggerAttackFinisherTrait",
-            "DaggerFinalHitTrait",
-            "DaggerChargeStageSkipTrait",
-            "DaggerDashAttackTripleTrait",
-            "DaggerTripleBuffTrait",
-            "DaggerTripleRepeatWomboTrait",
-            "DaggerTripleHomingSpecialTrait",
-        },
-    },
-    WeaponAxe = {
-        values = {
-            "",
-            "AxeSpinSpeedTrait",
-            "AxeChargedSpecialTrait",
-            "AxeAttackRecoveryTrait",
-            "AxeMassiveThirdStrikeTrait",
-            "AxeThirdStrikeTrait",
-            "AxeRangedWhirlwindTrait",
-            "AxeFreeSpinTrait",
-            "AxeArmorTrait",
-            "AxeBlockEmpowerTrait",
-            "AxeSecondStageTrait",
-            "AxeDashAttackTrait",
-            "AxeSturdyTrait",
-            "AxeRallyFrenzyTrait",
-            "AxeRallyFirstStrikeTrait",
-        },
-    },
-    WeaponTorch = {
-        values = {
-            "",
-            "TorchExSpecialCountTrait",
-            "TorchSpecialSpeedTrait",
-            "TorchAttackSpeedTrait",
-            "TorchSpecialLineTrait",
-            "TorchSpecialImpactTrait",
-            "TorchMoveSpeedTrait",
-            "TorchSplitAttackTrait",
-            "TorchEnhancedAttackTrait",
-            "TorchDiscountExAttackTrait",
-            "TorchLongevityTrait",
-            "TorchOrbitPointTrait",
-            "TorchSpinAttackTrait",
-            "TorchAutofireSprintTrait",
-        },
-    },
-    WeaponLob = {
-        values = {
-            "",
-            "LobAmmoTrait",
-            "LobAmmoMagnetismTrait",
-            "LobRushArmorTrait",
-            "LobSpreadShotTrait",
-            "LobSpecialSpeedTrait",
-            "LobSturdySpecialTrait",
-            "LobOneSideTrait",
-            "LobInOutSpecialExTrait",
-            "LobStraightShotTrait",
-            "LobPulseAmmoTrait",
-            "LobPulseAmmoCollectTrait",
-            "LobGrowthTrait",
-            "LobGunOverheatTrait",
-            "LobGunBounceTrait",
-            "LobGunSpecialBounceTrait",
-            "LobGunAttackRangeTrait",
-            "LobGunAttackDoublerTrait",
-        },
-    },
-    WeaponSuit = {
-        values = {
-            "",
-            "SuitArmorTrait",
-            "SuitAttackSpeedTrait",
-            "SuitAttackSizeTrait",
-            "SuitAttackRangeTrait",
-            "SuitFullChargeTrait",
-            "SuitDashAttackTrait",
-            "SuitSpecialJumpTrait",
-            "SuitSpecialStartUpTrait",
-            "SuitSpecialAutoTrait",
-            "SuitSpecialBlockTrait",
-            "SuitSpecialDiscountTrait",
-            "SuitSpecialConsecutiveHitTrait",
-            "SuitComboForwardRocketTrait",
-            "SuitComboBlockBuffTrait",
-            "SuitComboDoubleSpecialTrait",
-            "SuitComboDashAttackTrait",
-            "SuitPowershotTrait",
-        },
-    },
+data.weapons = {
+    { id = "WeaponStaffSwing", prefix = "Staff", label = "Staff" },
+    { id = "WeaponDagger", prefix = "Dagger", label = "Blades" },
+    { id = "WeaponAxe", prefix = "Axe", label = "Axe" },
+    { id = "WeaponTorch", prefix = "Torch", label = "Torch" },
+    { id = "WeaponLob", prefix = "Lob", label = "Skull" },
+    { id = "WeaponSuit", prefix = "Suit", label = "Coat" },
 }
 
-data.weaponLabels = {
-    WeaponStaffSwing = "Staff",
-    WeaponDagger = "Blades",
-    WeaponAxe = "Axe",
-    WeaponTorch = "Torch",
-    WeaponLob = "Skull",
-    WeaponSuit = "Coat",
-}
+data.hammerData = {}
+data.weaponLabels = {}
+data.weaponDrawOrder = {}
+data.aspectLabels = {}
+data.weaponAspectMapping = {}
 
-data.weaponDrawOrder = {
-    "WeaponStaffSwing",
-    "WeaponDagger",
-    "WeaponAxe",
-    "WeaponTorch",
-    "WeaponLob",
-    "WeaponSuit",
-}
-
-data.aspectLabels = {
-    BaseStaffAspect = "Mel Staff",
-    StaffClearCastAspect = "Circe",
-    StaffSelfHitAspect = "Momus",
-    StaffRaiseDeadAspect = "Anubis",
-
-    DaggerBackstabAspect = "Mel Blades",
-    DaggerHomingThrowAspect = "Pan",
-    DaggerBlockAspect = "Artemis",
-    DaggerTripleAspect = "The Morrigan",
-
-    LobAmmoBoostAspect = "Mel Skull",
-    LobCloseAttackAspect = "Medea",
-    LobImpulseAspect = "Persephone",
-    LobGunAspect = "Hel",
-
-    AxeRecoveryAspect = "Mel Axe",
-    AxeArmCastAspect = "Charon",
-    AxePerfectCriticalAspect = "Thanatos",
-    AxeRallyAspect = "Nergal",
-
-    TorchSpecialDurationAspect = "Mel Torch",
-    TorchSprintRecallAspect = "Eos",
-    TorchDetonateAspect = "Moros",
-    TorchAutofireAspect = "Supay",
-
-    BaseSuitAspect = "Mel Coat",
-    SuitMarkCritAspect = "Nyx",
-    SuitHexAspect = "Selene",
-    SuitComboAspect = "Shiva",
-}
-
-data.weaponAspectMapping = {
-    WeaponStaffSwing = { "BaseStaffAspect", "StaffClearCastAspect", "StaffSelfHitAspect", "StaffRaiseDeadAspect" },
-    WeaponDagger = { "DaggerBackstabAspect", "DaggerHomingThrowAspect", "DaggerBlockAspect", "DaggerTripleAspect" },
-    WeaponAxe = { "AxeRecoveryAspect", "AxeArmCastAspect", "AxePerfectCriticalAspect", "AxeRallyAspect" },
-    WeaponTorch = { "TorchSpecialDurationAspect", "TorchSprintRecallAspect", "TorchDetonateAspect", "TorchAutofireAspect" },
-    WeaponLob = { "LobAmmoBoostAspect", "LobCloseAttackAspect", "LobImpulseAspect", "LobGunAspect" },
-    WeaponSuit = { "BaseSuitAspect", "SuitMarkCritAspect", "SuitHexAspect", "SuitComboAspect" },
-}
-
-local function AttachAspectHammerData()
-    for weaponName, aspects in pairs(data.weaponAspectMapping) do
-        local baseWeaponData = data.hammerData[weaponName]
-        for _, aspectName in ipairs(aspects) do
-            data.hammerData[aspectName] = baseWeaponData
-        end
+local function copyList(list)
+    local copy = {}
+    for _, value in ipairs(list or {}) do
+        copy[#copy + 1] = value
     end
+    return copy
 end
 
-local function FinalizeWeaponHammerData()
-    for _, weaponName in ipairs(data.weaponDrawOrder) do
-        local hammerData = data.hammerData[weaponName]
-        hammerData.valueIndex = {}
-        hammerData.displayValues = {}
-        for i, v in ipairs(hammerData.values) do
-            hammerData.valueIndex[v] = i
-            if v == "" then
-                hammerData.displayValues[v] = "None (Random)"
-            else
-                hammerData.displayValues[v] = v
-            end
+local function getGameAspectOrder()
+    local screenData = ScreenData and ScreenData.WeaponUpgradeScreen
+    return screenData and screenData.DisplayOrder or {}
+end
+
+local function getGameHammerTraits()
+    local lootSetData = LootSetData and LootSetData.Loot
+    local weaponUpgrade = lootSetData and lootSetData.WeaponUpgrade
+    return weaponUpgrade and weaponUpgrade.Traits or {}
+end
+
+local function getAspectLabel(aspectName)
+    local localized = game and game.GetDisplayName and game.GetDisplayName({ Text = aspectName }) or nil
+    return localized or aspectName
+end
+
+local function buildHammerData(values)
+    local hammerData = {
+        values = values,
+        valueIndex = {},
+        displayValues = {},
+    }
+    for index, value in ipairs(values) do
+        hammerData.valueIndex[value] = index
+        if value == "" then
+            hammerData.displayValues[value] = "None (Random)"
+        else
+            hammerData.displayValues[value] = value
+        end
+    end
+    return hammerData
+end
+
+local function collectHammersForPrefix(allHammers, prefix)
+    local hammers = { "" }
+    for _, hammerName in ipairs(allHammers or {}) do
+        if string.find(hammerName, prefix, 1, true) == 1 then
+            hammers[#hammers + 1] = hammerName
+        end
+    end
+    return hammers
+end
+
+local function buildDerivedCatalog()
+    local aspectOrder = getGameAspectOrder()
+    local allHammers = getGameHammerTraits()
+
+    for _, weapon in ipairs(data.weapons) do
+        local hammerData = buildHammerData(collectHammersForPrefix(allHammers, weapon.prefix))
+        data.hammerData[weapon.id] = hammerData
+        data.weaponLabels[weapon.id] = weapon.label
+        data.weaponDrawOrder[#data.weaponDrawOrder + 1] = weapon.id
+
+        local aspects = copyList(aspectOrder[weapon.id])
+        data.weaponAspectMapping[weapon.id] = aspects
+        for _, aspectName in ipairs(aspects) do
+            data.aspectLabels[aspectName] = getAspectLabel(aspectName)
+            data.hammerData[aspectName] = hammerData
         end
     end
 end
@@ -225,7 +103,6 @@ function data.buildStorage()
     return storage
 end
 
-AttachAspectHammerData()
-FinalizeWeaponHammerData()
+buildDerivedCatalog()
 
 return data
