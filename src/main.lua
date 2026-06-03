@@ -15,7 +15,7 @@ local lib = mods['adamant-ModpackLib']
 local config = chalk.auto('config.lua')
 
 local PACK_ID = "speedrun"
-local MODULE_ID = "FirstHammer"
+local MODULE_ID = "SelectFirstHammer"
 local PLUGIN_GUID = _PLUGIN.guid
 
 local loader = reload.auto_single()
@@ -30,8 +30,8 @@ local function init()
         pluginGuid = PLUGIN_GUID,
         config = config,
         id = MODULE_ID,
-        name = "Hammer Selection",
-        shortName = "Hammer Selection",
+        name = "Select First Hammer",
+        shortName = "First Hammer",
         tooltip = "Select the guaranteed first hammer for each weapon aspect.",
         modpack = PACK_ID,
     })

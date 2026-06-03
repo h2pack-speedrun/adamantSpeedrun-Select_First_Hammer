@@ -4,10 +4,10 @@ schemaVersion = "0.0.1"
 
 [package]
 namespace = "adamant"
-name = "Speedrun_FirstHammer"
+name = "Speedrun_Select_First_Hammer"
 versionNumber = "1.1.0"
 description = "Select the guaranteed first hammer for each weapon aspect."
-websiteUrl = "https://github.com/h2pack-speedrun/adamant-Speedrun_FirstHammer"
+websiteUrl = "https://github.com/h2pack-speedrun/adamant-Speedrun_Select_First_Hammer"
 containsNsfwContent = false
 
 [package.dependencies]

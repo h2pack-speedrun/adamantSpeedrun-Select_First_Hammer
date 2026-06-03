@@ -17,6 +17,6 @@
 
 Initial release
 
-[unreleased]: https://github.com/h2pack-speedrun/adamant-Speedrun_FirstHammer/compare/1.1.0...HEAD
-[1.1.0]: https://github.com/h2pack-speedrun/adamant-Speedrun_FirstHammer/compare/1.0.0...1.1.0
-[1.0.0]: https://github.com/h2pack-speedrun/adamant-Speedrun_FirstHammer/compare/3ff2ba324f4af2db83864e9ea671aca9567babaa...1.0.0
+[unreleased]: https://github.com/h2pack-speedrun/adamant-Speedrun_Select_First_Hammer/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/h2pack-speedrun/adamant-Speedrun_Select_First_Hammer/compare/1.0.0...1.1.0
+[1.0.0]: https://github.com/h2pack-speedrun/adamant-Speedrun_Select_First_Hammer/compare/3ff2ba324f4af2db83864e9ea671aca9567babaa...1.0.0

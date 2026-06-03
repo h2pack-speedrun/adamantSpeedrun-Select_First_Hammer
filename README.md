@@ -1,4 +1,4 @@
-# First Hammer
+# Select First Hammer
 
 Choose the guaranteed first Daedalus Hammer for each weapon aspect.
 
@@ -6,7 +6,7 @@ Part of the [Speedrun modpack](https://thunderstore.io/c/hades-ii/p/adamant/Spee
 
 ## What It Does
 
-First Hammer lets you pre-select the first hammer you will see for each weapon aspect.
+Select First Hammer lets you pre-select the first hammer you will see for each weapon aspect.
 
 Instead of taking a random first hammer, you can assign a specific opener to every aspect in the game. Leaving an aspect on None (Random) preserves the normal vanilla behavior for that aspect.
 
