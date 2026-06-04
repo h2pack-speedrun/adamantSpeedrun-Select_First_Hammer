@@ -2,7 +2,7 @@
 
 Choose the guaranteed first Daedalus Hammer for each weapon aspect.
 
-Part of the [Speedrun modpack](https://thunderstore.io/c/hades-ii/p/adamant/Speedrun_Modpack/).
+Part of the [Speedrun modpack](https://thunderstore.io/c/hades-ii/p/adamantSpeedrun/Speedrun_Modpack/).
 
 ## What It Does
 
@@ -27,4 +27,4 @@ UI layout is grouped by weapon, then by aspect, so you can configure:
 
 Install via r2modman.
 
-This module is usually installed as part of the full [Speedrun modpack](https://thunderstore.io/c/hades-ii/p/adamant/Speedrun_Modpack/), where it appears in the shared Speedrun UI with the other speedrun-focused modules.
+This module is usually installed as part of the full [Speedrun modpack](https://thunderstore.io/c/hades-ii/p/adamantSpeedrun/Speedrun_Modpack/), where it appears in the shared Speedrun UI with the other speedrun-focused modules.
