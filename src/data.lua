@@ -96,6 +96,7 @@ function data.buildStorage()
                 type = "string",
                 alias = aspectName,
                 default = "",
+                hash = false,
             })
         end
     end
