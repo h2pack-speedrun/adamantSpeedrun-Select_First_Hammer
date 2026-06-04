@@ -23,8 +23,6 @@ UI layout is grouped by weapon, then by aspect, so you can configure:
 - Skull aspects
 - Coat aspects
 
-Use it when you want reliable first-hammer routing without changing later hammer behavior.
-
 ## Installation
 
 Install via r2modman.
