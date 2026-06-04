@@ -15,7 +15,7 @@ local lib = mods['adamant-ModpackLib']
 local config = chalk.auto('config.lua')
 
 local PACK_ID = "speedrun"
-local MODULE_ID = "SelectFirstHammer"
+local MODULE_ID = "Select_First_Hammer"
 local PLUGIN_GUID = _PLUGIN.guid
 
 local loader = reload.auto_single()
