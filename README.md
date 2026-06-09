@@ -12,7 +12,7 @@ Instead of taking a random first hammer, you can assign a specific opener to eve
 
 ## Hammer Panel
 
-![Select First Hammer panel with weapon-aspect hammer choices](assets/Hammer.png)
+<img src="https://raw.githubusercontent.com/h2pack-speedrun/adamantSpeedrun-Select_First_Hammer/main/assets/Hammer.png" width="100%"/>
 
 ## Current Coverage
 
