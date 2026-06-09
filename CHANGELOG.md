@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [2.0.2] - 2026-06-09
+
 ## [2.0.1] - 2026-06-09
 
 ## [2.0.0] - 2026-06-09
@@ -21,7 +23,8 @@
 
 Initial release
 
-[unreleased]: https://github.com/h2pack-speedrun/adamantSpeedrun-Select_First_Hammer/compare/2.0.1...HEAD
+[unreleased]: https://github.com/h2pack-speedrun/adamantSpeedrun-Select_First_Hammer/compare/2.0.2...HEAD
+[2.0.2]: https://github.com/h2pack-speedrun/adamantSpeedrun-Select_First_Hammer/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/h2pack-speedrun/adamantSpeedrun-Select_First_Hammer/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/h2pack-speedrun/adamantSpeedrun-Select_First_Hammer/compare/1.1.0...2.0.0
 [1.1.0]: https://github.com/h2pack-speedrun/adamant-Speedrun_Select_First_Hammer/compare/1.0.0...1.1.0
