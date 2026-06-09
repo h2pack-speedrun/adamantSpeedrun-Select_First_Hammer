@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [2.0.0] - 2026-06-09
+
 ### Changed
 
 - Ported module boot, hook registration, fallback UI, and draw widgets to the current ModpackLib host/draw APIs.
@@ -17,6 +19,7 @@
 
 Initial release
 
-[unreleased]: https://github.com/h2pack-speedrun/adamant-Speedrun_Select_First_Hammer/compare/1.1.0...HEAD
+[unreleased]: https://github.com/h2pack-speedrun/adamantSpeedrun-Select_First_Hammer/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/h2pack-speedrun/adamantSpeedrun-Select_First_Hammer/compare/1.1.0...2.0.0
 [1.1.0]: https://github.com/h2pack-speedrun/adamant-Speedrun_Select_First_Hammer/compare/1.0.0...1.1.0
 [1.0.0]: https://github.com/h2pack-speedrun/adamant-Speedrun_Select_First_Hammer/compare/3ff2ba324f4af2db83864e9ea671aca9567babaa...1.0.0
