@@ -10,6 +10,10 @@ Select First Hammer lets you pre-select the first hammer you will see for each w
 
 Instead of taking a random first hammer, you can assign a specific opener to every aspect in the game. Leaving an aspect on None (Random) preserves the normal vanilla behavior for that aspect.
 
+## Hammer Panel
+
+![Select First Hammer panel with weapon-aspect hammer choices](assets/Hammer.png)
+
 ## Current Coverage
 
 The module provides a separate first-hammer selection for every aspect across the full weapon roster.
