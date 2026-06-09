@@ -6,26 +6,15 @@ Part of the [Speedrun modpack](https://thunderstore.io/c/hades-ii/p/adamantSpeed
 
 ## What It Does
 
-Select First Hammer lets you pre-select the first hammer you will see for each weapon aspect.
-
 Instead of taking a random first hammer, you can assign a specific opener to every aspect in the game. Leaving an aspect on None (Random) preserves the normal vanilla behavior for that aspect.
 
 ## Hammer Panel
 
-<img src="https://raw.githubusercontent.com/h2pack-speedrun/adamantSpeedrun-Select_First_Hammer/main/assets/Hammer.png" width="100%"/>
+<img src="https://raw.githubusercontent.com/h2pack-speedrun/adamantSpeedrun-Select_First_Hammer/main/assets/Hammer.png" width="60%"/>
 
 ## Current Coverage
 
-The module provides a separate first-hammer selection for every aspect across the full weapon roster.
-
-UI layout is grouped by weapon, then by aspect, so you can configure:
-
-- Staff aspects
-- Blades aspects
-- Axe aspects
-- Torch aspects
-- Skull aspects
-- Coat aspects
+The module provides a separate first-hammer selection for every aspect across the full weapon roster. UI layout is grouped by weapon, then by aspect.
 
 ## Installation
 
