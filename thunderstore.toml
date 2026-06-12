@@ -5,7 +5,7 @@ schemaVersion = "0.0.1"
 [package]
 namespace = "adamantSpeedrun"
 name = "Select_First_Hammer"
-versionNumber = "2.0.2"
+versionNumber = "3.0.0"
 description = "Select the guaranteed first hammer for each weapon aspect."
 websiteUrl = "https://github.com/h2pack-speedrun/adamantSpeedrun-Select_First_Hammer"
 containsNsfwContent = false
