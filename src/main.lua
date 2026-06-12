@@ -6,13 +6,10 @@ rom = rom
 _PLUGIN = _PLUGIN
 game = rom.game
 modutil = mods['SGG_Modding-ModUtil']
-local chalk = mods['SGG_Modding-Chalk']
 local reload = mods['SGG_Modding-ReLoad']
 ---@module "adamant-ModpackLib"
 ---@type AdamantModpackLib
 local lib = mods['adamant-ModpackLib']
-
-local config = chalk.auto('config.lua')
 
 local PACK_ID = "speedrun"
 local MODULE_ID = "Select_First_Hammer"
@@ -28,7 +25,6 @@ local function init()
 
     local module = lib.createModule({
         pluginGuid = PLUGIN_GUID,
-        config = config,
         id = MODULE_ID,
         name = "Select First Hammer",
         shortName = "First Hammer",
