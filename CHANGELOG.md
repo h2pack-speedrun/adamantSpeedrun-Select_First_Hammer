@@ -2,6 +2,17 @@
 
 ## [Unreleased]
 
+## [5.0.0] - 2026-10-05
+
+### Added
+
+- opt out of pack hash, require ModpackLib 4.2.1 (9d9b1a0)
+
+### Documentation
+
+- refine package description (
+311235)
+
 ## [3.0.0] - 2026-06-12
 
 ### Changed
