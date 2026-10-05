@@ -29,6 +29,7 @@ local function init()
         name = "Select First Hammer",
         shortName = "First Hammer",
         tooltip = "Select the guaranteed first hammer for each weapon aspect.",
+        hash = false,
         modpack = PACK_ID,
     })
     if not module then
