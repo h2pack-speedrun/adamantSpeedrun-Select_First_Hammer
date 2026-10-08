@@ -17,6 +17,60 @@ data.weaponDrawOrder = {}
 data.aspectLabels = {}
 data.weaponAspectMapping = {}
 
+-- Hammer legality per aspect, mirrored from each hammer's GameStateRequirements
+-- (GameState.LastWeaponUpgradeName[weapon] IsAny / IsNone). Hammers not listed are legal for every aspect.
+-- exclusive: hammer -> the only aspect that can roll it.
+data.exclusiveHammers = {
+    StaffRaiseDeadBigTrait = "StaffRaiseDeadAspect",
+    StaffRaiseDeadDoubleTrait = "StaffRaiseDeadAspect",
+    StaffLoneShadeRespawnTrait = "StaffRaiseDeadAspect",
+    StaffLoneShadeRallyTrait = "StaffRaiseDeadAspect",
+
+    DaggerTripleBuffTrait = "DaggerTripleAspect",
+    DaggerTripleRepeatWomboTrait = "DaggerTripleAspect",
+    DaggerTripleHomingSpecialTrait = "DaggerTripleAspect",
+
+    AxeRallyFrenzyTrait = "AxeRallyAspect",
+    AxeRallyFirstStrikeTrait = "AxeRallyAspect",
+
+    TorchAutofireSprintTrait = "TorchAutofireAspect",
+
+    LobGunOverheatTrait = "LobGunAspect",
+    LobGunBounceTrait = "LobGunAspect",
+    LobGunSpecialBounceTrait = "LobGunAspect",
+    LobGunAttackRangeTrait = "LobGunAspect",
+    LobGunAttackDoublerTrait = "LobGunAspect",
+
+    SuitComboForwardRocketTrait = "SuitComboAspect",
+    SuitComboBlockBuffTrait = "SuitComboAspect",
+    SuitComboDoubleSpecialTrait = "SuitComboAspect",
+    SuitComboDashAttackTrait = "SuitComboAspect",
+    SuitPowershotTrait = "SuitComboAspect",
+}
+
+-- banned: aspect -> hammers that aspect can never roll.
+data.bannedHammers = {
+    StaffRaiseDeadAspect = {
+        "StaffDoubleAttackTrait", "StaffLongAttackTrait", "StaffDashAttackTrait",
+        "StaffExAoETrait", "StaffOneWayAttackTrait",
+    },
+    DaggerTripleAspect = { "DaggerDashAttackTripleTrait" },
+    AxeRallyAspect = { "AxeMassiveThirdStrikeTrait", "AxeThirdStrikeTrait" },
+    TorchAutofireAspect = {
+        "TorchAttackSpeedTrait", "TorchDiscountExAttackTrait", "TorchLongevityTrait",
+    },
+    TorchDetonateAspect = { "TorchSplitAttackTrait" },
+    TorchSprintRecallAspect = { "TorchExSpecialCountTrait", "TorchSplitAttackTrait" },
+    LobGunAspect = {
+        "LobAmmoTrait", "LobAmmoMagnetismTrait", "LobSpreadShotTrait", "LobOneSideTrait",
+        "LobStraightShotTrait", "LobPulseAmmoTrait", "LobPulseAmmoCollectTrait", "LobGrowthTrait",
+    },
+    SuitComboAspect = {
+        "SuitDashAttackTrait", "SuitSpecialJumpTrait", "SuitSpecialStartUpTrait", "SuitSpecialAutoTrait",
+        "SuitSpecialBlockTrait", "SuitSpecialDiscountTrait", "SuitSpecialConsecutiveHitTrait",
+    },
+}
+
 local function copyList(list)
     local copy = {}
     for _, value in ipairs(list or {}) do
@@ -68,6 +122,25 @@ local function collectHammersForPrefix(allHammers, prefix)
     return hammers
 end
 
+local function buildAspectHammerData(weaponHammerData, aspectName)
+    local banned = {}
+    for _, hammerName in ipairs(data.bannedHammers[aspectName] or {}) do
+        banned[hammerName] = true
+    end
+
+    local values = {}
+    for _, hammerName in ipairs(weaponHammerData.values) do
+        local owner = data.exclusiveHammers[hammerName]
+        if not banned[hammerName] and (owner == nil or owner == aspectName) then
+            values[#values + 1] = hammerName
+        end
+    end
+
+    local hammerData = buildHammerData(values)
+    hammerData.displayValues = weaponHammerData.displayValues
+    return hammerData
+end
+
 local function buildDerivedCatalog()
     local aspectOrder = getGameAspectOrder()
     local allHammers = getGameHammerTraits()
@@ -82,7 +155,7 @@ local function buildDerivedCatalog()
         data.weaponAspectMapping[weapon.id] = aspects
         for _, aspectName in ipairs(aspects) do
             data.aspectLabels[aspectName] = getAspectLabel(aspectName)
-            data.hammerData[aspectName] = hammerData
+            data.hammerData[aspectName] = buildAspectHammerData(hammerData, aspectName)
         end
     end
 end
