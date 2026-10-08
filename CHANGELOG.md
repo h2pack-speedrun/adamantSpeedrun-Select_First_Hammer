@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [5.1.0] - 2026-10-08
+
+### Added
+
+- limit first hammer options to ones legal for each aspect (33951de)
+
 ## [5.0.0] - 2026-10-05
 
 ### Added
